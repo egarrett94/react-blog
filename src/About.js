@@ -58,7 +58,7 @@ class About extends Component {
 
 		return(
 			<div>
-			    <div>
+			    <div className='weather-box'>
        
 		      	<form onSubmit={this.handleSubmit}>
 		      	<h2> {place} </h2>

@@ -38,7 +38,7 @@ class App extends Component {
             <Link to="/blog">Blog</Link>{' '}
             <Link to="/favefood">Favorite Food</Link>{' '}
             <Link to="/favemovie">Favorite Movie</Link>{' '}
-            <Link to="/about">About</Link>
+            <Link to="/about">Weather</Link>
           </nav>  
           {/*only renders when exactly the / path*/}
           <Route exact path='/' component={Home} />
