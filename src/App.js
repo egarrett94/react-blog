@@ -1,43 +1,60 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import Comments from './Comment';
-import Authors from './Author';
+import React, {Component} from 'react';
+import Post from './Post.js';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+import Home from './Home.js';
+import FaveFood from './FaveFood.js';
+import FaveMovie from './FaveMovie.js';
+import About from './About.js';
+
 import './App.css';
 
+var post = {
+	title: "Lemon is Cute and Nice",
+	author: "Lemon",
+	body: "I may be biased",
+	comments: [
+		"You're not, it's totally true",
+		"You are a master writer",
+		"Absolute madwoman"
+	],
+	allAuthors: [
+	"eira",
+	"dog",
+	"cat"
+	]
+}
 
-//the key in a map needs to be a unique value
-//used by react to get access to actual dom element
-//only used when iterating on collections
-class Post extends Component {
+class App extends Component {
   render() {
-
-    {/*let allComments = [
-      <Comments text={this.props.comments[0]}/>,
-      <Comments text={this.props.comments[1]}/>,
-      <Comments text={this.props.comments[2]}/>
-    ]*/}
-
-    let authors = this.props.authors.map(function(author,index) {
-      return <Authors key={index} text={author} id={index} />
-    })
-
-    let allComments = this.props.comments.map(function(comment, index) {
-      return <Comments key={index} text={comment} id={index} />
-    })
-
     return (
-      <div>
-        <h2>{this.props.title}</h2>
-        <h4>By {this.props.author}</h4>
-        <hr/>
-        <br/>
-        <p>{this.props.body}</p>
-        <p><strong>Comments:</strong> <br/></p>
-        { allComments }
-        { authors }
-      </div>
-    )
+      <Router>
+        <div>
+          <nav>
+            <Link to="/">Home</Link>{' '}
+            <Link to="/blog">Blog</Link>{' '}
+            <Link to="/favefood">Favorite Food</Link>{' '}
+            <Link to="/favemovie">Favorite Movie</Link>{' '}
+            <Link to="/about">About</Link>
+          </nav>  
+          {/*only renders when exactly the / path*/}
+          <Route exact path='/' component={Home} />
+          <Route path='/blog' component={() => (<Post title={post.title} 
+			author={post.author}
+			body={post.body}
+			comments={post.comments}
+			authors={post.allAuthors}
+			/>)} />
+          <Route path='/favefood' component={FaveFood} />
+          <Route path='/favemovie' component={FaveMovie} />
+          <Route path='/about' component={About} />
+        </div>
+      </Router>
+    );
   }
 }
 
-export default Post;
+export default App;
