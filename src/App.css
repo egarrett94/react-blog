@@ -46,6 +46,12 @@ img {
 body {
   text-align: center;
   background-color: lightgrey;
+  font-family: 'Karma', serif;
+
+}
+
+.temp {
+  font-size: 30px;
 }
 
 @keyframes App-logo-spin {
